@@ -776,6 +776,22 @@ between the operands.
   => (infix (1 + 1))
   2
 
+Additionally, ``defmacro`` a special initial argument, ``&name``, which defaults to 
+the name of the module in which the macro is being expanded. For example:
+
+.. code-block:: clj
+
+    (defmacro where-is-here? [] `(print ~&name))
+
+should print "__console__" when run at the command line.
+
+.. code-block:: clj
+
+  => (where-is-here?)
+  __console__
+
+A non-frivolous use case for accessing ``&name`` can be seen
+in the definition of :ref:`let`.
 
 .. _defmacro/g!:
 
